@@ -35,6 +35,20 @@ def main():
     controller = Controller()
     controller.run(shares)
 
+from algorithms import bruteforce, optimized_v1
+    
+ALGORITHM_PROVIDER = {
+   'bruteforce': bruteforce.get_best_portfolio,
+}
+
+def main2(shares_filepath: str = 'resources/shares-short.csv', algorithm: str = 'bruteforce'):
+    shares = load_shares(shares_filepath)
+    algorithm_func = ALGORITHM_PROVIDER[algorithm]
+    
+    best_portfolio = algorithm_func(shares)
+    
+    nice_print(best_portfolio)
+    
 
 if __name__ == "__main__":
     main()
