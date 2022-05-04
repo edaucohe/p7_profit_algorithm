@@ -37,13 +37,13 @@ def main():
 
 from algorithms import bruteforce, optimized_v1
     
-ALGORITHM_PROVIDER: Dict[str, Callable[[List[Share], Portfolio]] = {
+ALGORITHM_PROVIDER: Dict[str, Callable[[List[Share]], Portfolio]] = {
    'bruteforce': bruteforce.get_best_portfolio,
 }
 
 def main2(shares_filepath: str = 'resources/shares-short.csv', algorithm: str = 'bruteforce'):
     shares = load_shares(shares_filepath)
-    algorithm_func: Callable[[List[Share], Portfolio] = ALGORITHM_PROVIDER[algorithm]
+    algorithm_func: Callable[[List[Share]], Portfolio] = ALGORITHM_PROVIDER[algorithm]
     
     best_portfolio = algorithm_func(shares)
     
