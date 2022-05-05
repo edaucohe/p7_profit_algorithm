@@ -2,7 +2,6 @@ from dataclasses import dataclass
 
 
 BUDGET_MAX = 500
-COMBINAISONS_NUMBER_MAX = 16
 
 
 @dataclass
