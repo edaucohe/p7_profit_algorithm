@@ -93,7 +93,7 @@ def get_best_investment(shares):
 
 def main():
     shares = create_share_list()
-    get_best_investment(shares)
+    return get_best_investment(shares)
 
 
 if __name__ == "__main__":
