@@ -6,6 +6,7 @@ from algorithm import bruteforce
 
 BUDGET_MAX = 500
 CSV_FILES_NAME = ['resources/dataset1_Python+P7.csv', 'resources/dataset2_Python+P7.csv']
+CSV_FILE_0 = ['resources/dataset0_bruteforce+P7.csv']
 CSV_FILE_1 = ['resources/dataset1_Python+P7.csv']
 CSV_FILE_2 = ['resources/dataset2_Python+P7.csv']
 
