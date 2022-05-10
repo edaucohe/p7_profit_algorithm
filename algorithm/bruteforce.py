@@ -1,33 +1,33 @@
 from itertools import combinations
 from typing import List, Optional
 
-from algorithm.model import Share, BUDGET_MAX
+from algorithm.model import BUDGET_MAX
 
 
-def create_share_list() -> List:
-    shares: List[Share] = [
-        Share("action-1", 20, 0.05),
-        Share("action-2", 30, 0.10),
-        Share("action-3", 50, 0.15),
-        Share("action-4", 70, 0.20),
-        Share("action-5", 60, 0.17),
-        Share("action-6", 80, 0.25),
-        Share("action-7", 22, 0.07),
-        Share("action-8", 26, 0.11),
-        Share("action-9", 48, 0.13),
-        Share("action-10", 34, 0.27),
-        Share("action-11", 42, 0.17),
-        Share("action-12", 110, 0.09),
-        Share("action-13", 38, 0.23),
-        Share("action-14", 14, 0.01),
-        Share("action-15", 18, 0.03),
-        Share("action-16", 8, 0.08),
-        Share("action-17", 4, 0.12),
-        Share("action-18", 10, 0.14),
-        Share("action-19", 24, 0.21),
-        Share("action-20", 114, 0.18),
-    ]
-    return shares
+# def create_share_list() -> List:
+#     shares: List[Share] = [
+#         Share("action-1", 20, 0.05),
+#         Share("action-2", 30, 0.10),
+#         Share("action-3", 50, 0.15),
+#         Share("action-4", 70, 0.20),
+#         Share("action-5", 60, 0.17),
+#         Share("action-6", 80, 0.25),
+#         Share("action-7", 22, 0.07),
+#         Share("action-8", 26, 0.11),
+#         Share("action-9", 48, 0.13),
+#         Share("action-10", 34, 0.27),
+#         Share("action-11", 42, 0.17),
+#         Share("action-12", 110, 0.09),
+#         Share("action-13", 38, 0.23),
+#         Share("action-14", 14, 0.01),
+#         Share("action-15", 18, 0.03),
+#         Share("action-16", 8, 0.08),
+#         Share("action-17", 4, 0.12),
+#         Share("action-18", 10, 0.14),
+#         Share("action-19", 24, 0.21),
+#         Share("action-20", 114, 0.18),
+#     ]
+#     return shares
 
 
 def console_display(title, message: Optional[List or int] = None):
@@ -73,28 +73,31 @@ def get_best_shares_by_combination(shares, nb_of_shares_combined):
     return best_investment, best_profit
 
 
-def get_best_investment(shares):
+def get_best_portfolio(shares):
     best_shares = []
     best_profits = []
-    for nb_of_shares in range(len(shares)):
+    nb_of_combinations = len(shares)
+    # nb_of_combinations = 1
+    for nb_of_shares in range(nb_of_combinations):
         best_shares_by_combination = get_best_shares_by_combination(shares, nb_of_shares+1)
         best_shares.append(best_shares_by_combination[0])
         best_profits.append(best_shares_by_combination[1])
 
     best_profit = max(best_profits)
-    best_investment = ()
+    best_portfolio = ()
     for number_of_share in range(len(best_shares)):
         if best_profits[number_of_share] == best_profit:
-            best_investment = best_shares[number_of_share]
+            best_portfolio = best_shares[number_of_share]
 
-    console_display("\nLe meilleur profit", best_profit)
-    console_display("Le meilleur investissement", best_investment)
-
-
-def main():
-    shares = create_share_list()
-    return get_best_investment(shares)
+    console_display("\nLe meilleur bénéfice", round(best_profit, 2))
+    console_display("Le meilleur investissement", best_portfolio)
+    return best_portfolio
 
 
-if __name__ == "__main__":
-    main()
+# def main():
+#     # shares = create_share_list()
+#     return get_best_portfolio(shares)
+#
+#
+# if __name__ == "__main__":
+#     main()
