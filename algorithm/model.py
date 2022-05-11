@@ -1,8 +1,8 @@
 from dataclasses import dataclass
-from enum import Enum
 from typing import Dict
+# from enum import Enum
 
-from algorithm import bruteforce
+# from algorithm import bruteforce, optimized
 
 BUDGET_MAX = 500
 CSV_FILES_NAME = ['resources/dataset1_Python+P7.csv', 'resources/dataset2_Python+P7.csv']
@@ -25,13 +25,12 @@ class Share:
         return self.price*self.profit
 
     @staticmethod
-    def deserialize_csv_file(row_from_csv_file: Dict) -> 'Share':
+    def deserialize_from_csv_file(row_from_csv_file: Dict[str, any]) -> 'Share':
         row_from_csv_file['price'] = int(float(row_from_csv_file['price'])*100)
         row_from_csv_file['profit'] = float(row_from_csv_file['profit'])
         return Share(**row_from_csv_file)
 
 
-@dataclass
-class Portfolio (Enum):
-    BRUTEFORCE_FUNC: bruteforce
-    # OPTIMIZED_FUNC: optimized
+# class Portfolio (Enum):
+#     BRUTEFORCE_FUNC: bruteforce
+#     OPTIMIZED_FUNC: optimized

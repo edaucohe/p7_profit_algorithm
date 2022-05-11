@@ -36,4 +36,10 @@ def get_best_portfolio(shares: List[Share]):
             partial_budget -= current_share.price
         nb_of_shares -= 1
 
-    return matrix_of_profits[-1][-1], best_portfolio
+    final_budget = 0
+    for share in best_portfolio:
+        share.price = round(share.price/100, 2)
+        final_budget += share.price
+
+    best_profit = round(matrix_of_profits[-1][-1]/10000, 2)
+    return final_budget, best_profit, best_portfolio
