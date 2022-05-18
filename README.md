@@ -43,6 +43,13 @@ et il n'y a plus besoin d'explorer toutes les combinaisons possibles.
 Python version : 3.9
 <création du venv>
 
+Les dépendances sont listées dans le fichier `requirements.txt`.
+Lancez :
+
+```
+pip install -r requirements.txt
+```
+
 ## Setup
 
 Rien à signaler

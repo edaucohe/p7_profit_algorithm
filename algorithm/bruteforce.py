@@ -1,21 +1,19 @@
 from itertools import combinations
 from typing import List
 
-from algorithm.model import BUDGET_MAX, Share
+from algorithm.model import BUDGET_MAX_CTS, Share
 
 
 def get_best_shares_by_combination(shares: List[Share], nb_of_shares_combined: int):
-    all_combinations = []
-    for combination in combinations(shares, nb_of_shares_combined):
-        all_combinations.append(combination)
+    all_combinations = [combination for combination in combinations(shares, nb_of_shares_combined)]
     print("nb. de combinaisons : ", len(all_combinations))
 
     combinations_below_budget_max = []
     for every_combination in all_combinations:
-        price_sum = 0
+        price_cts_sum = 0
         for share in every_combination:
-            price_sum = share.get_investment_sum(price_sum)
-        if price_sum <= BUDGET_MAX*100:
+            price_cts_sum = share.get_investment_sum(price_cts_sum)
+        if price_cts_sum <= BUDGET_MAX_CTS:
             combinations_below_budget_max.append(every_combination)
     print("nb. de combinaisons au-dessous du budget : ", len(combinations_below_budget_max))
 
@@ -39,18 +37,20 @@ def get_best_shares_by_combination(shares: List[Share], nb_of_shares_combined: i
         best_investment = tuple()
         best_profit = float(0)
 
-    return best_investment, best_profit
+    return best_investment, best_profit, len(all_combinations)
 
 
 def get_best_portfolio(shares: List[Share]):
     best_shares = []
     best_profits = []
+    nb_of_operations = []
     nb_of_combinations = len(shares)
 
     for nb_of_shares in range(nb_of_combinations):
-        best_shares_by_combination = get_best_shares_by_combination(shares, nb_of_shares+1)
-        best_shares.append(best_shares_by_combination[0])
-        best_profits.append(best_shares_by_combination[1])
+        best_investment, best_profit, operations = get_best_shares_by_combination(shares, nb_of_shares+1)
+        best_shares.append(best_investment)
+        best_profits.append(best_profit)
+        nb_of_operations.append(operations)
 
     best_profit = max(best_profits)
     best_portfolio = ()
@@ -64,5 +64,5 @@ def get_best_portfolio(shares: List[Share]):
         final_budget += share.price
 
     best_profit = round(best_profit/10000, 2)
-
-    return final_budget, best_profit, best_portfolio
+    nb_of_operations = sum(nb_of_operations)
+    return final_budget, best_profit, best_portfolio, nb_of_operations

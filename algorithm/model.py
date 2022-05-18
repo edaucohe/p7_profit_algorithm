@@ -1,10 +1,8 @@
 from dataclasses import dataclass
 from typing import Dict
-# from enum import Enum
 
-# from algorithm import bruteforce, optimized
 
-BUDGET_MAX = 500
+BUDGET_MAX_CTS = 50000
 CSV_FILES_NAME = ['resources/dataset1_Python+P7.csv', 'resources/dataset2_Python+P7.csv']
 CSV_FILE_0 = ['resources/dataset0_bruteforce+P7.csv']
 CSV_FILE_1 = ['resources/dataset1_Python+P7.csv']
@@ -29,8 +27,3 @@ class Share:
         row_from_csv_file['price'] = int(float(row_from_csv_file['price'])*100)
         row_from_csv_file['profit'] = float(row_from_csv_file['profit'])
         return Share(**row_from_csv_file)
-
-
-# class Portfolio (Enum):
-#     BRUTEFORCE_FUNC: bruteforce
-#     OPTIMIZED_FUNC: optimized
