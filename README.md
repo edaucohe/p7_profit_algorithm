@@ -55,10 +55,16 @@ pip install -r requirements.txt
 Rien à signaler
 
 ## Use
-Lancez le script :
+Pour obtenir le résultat des actions, lancez le script :
 
 ```
 python main.py
+```
+
+Pour tester la performance des algorithmes, lancez le script : 
+
+```
+python performance.py
 ```
 
 ## Helpful links

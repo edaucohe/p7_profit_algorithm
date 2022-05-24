@@ -1,12 +1,12 @@
 from itertools import combinations
 from typing import List
+from memory_profiler import memory_usage
 
 from algorithm.model import BUDGET_MAX_CTS, Share
 
 
 def get_best_shares_by_combination(shares: List[Share], nb_of_shares_combined: int):
     all_combinations = [combination for combination in combinations(shares, nb_of_shares_combined)]
-    print("nb. de combinaisons : ", len(all_combinations))
 
     combinations_below_budget_max = []
     for every_combination in all_combinations:
@@ -15,7 +15,6 @@ def get_best_shares_by_combination(shares: List[Share], nb_of_shares_combined: i
             price_cts_sum = share.get_investment_sum(price_cts_sum)
         if price_cts_sum <= BUDGET_MAX_CTS:
             combinations_below_budget_max.append(every_combination)
-    print("nb. de combinaisons au-dessous du budget : ", len(combinations_below_budget_max))
 
     if combinations_below_budget_max:
         profits_by_combination = []
@@ -64,5 +63,6 @@ def get_best_portfolio(shares: List[Share]):
         final_budget += share.price
 
     best_profit = round(best_profit/10000, 2)
-    nb_of_operations = sum(nb_of_operations)
-    return final_budget, best_profit, best_portfolio, nb_of_operations
+    ram_memory = memory_usage()
+
+    return final_budget, best_profit, best_portfolio, ram_memory
